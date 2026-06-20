@@ -25,8 +25,8 @@ operator state.
 ## Model And Tool Stack
 
 - Agent interface: FastMCP stdio server with 35 tools, 3 resources, and 2 prompts.
-- Agent brain: model-agnostic MCP tool layer, designed to run behind any
-  MCP-capable agent runtime.
+- Deployed agent brain: GPT-5.5. The MCP tool layer is model-swappable and
+  can run behind any MCP-capable agent runtime.
 - Image stylization: fal.ai ByteDance Seedream v4 edit with aura-sr upscaling.
 - Overlay and vision checks: Gemini 2.5 Flash by default, configurable via env.
 - Generated fallback images: OpenAI `gpt-image-2`, with provider keys split from
