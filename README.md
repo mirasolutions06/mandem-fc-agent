@@ -10,6 +10,18 @@ only publishes after approval. The interesting part is not "generate a caption";
 it is the operating system around that caption: event polling, ranking, state,
 approval, async jobs, image safety checks, deterministic fallbacks, and recovery.
 
+## Demo
+
+Screen recording coming soon: draft creation, Telegram approval, async
+stylization, and the final queued post.
+
+## Live Output
+
+Example approved posts are published at
+[@mandemfchq](https://www.instagram.com/mandemfchq/). The GitHub repo is
+sanitized and does not include live deployment details, credentials, or private
+operator state.
+
 ## What It Proves
 
 - Agent tool design with 35 FastMCP tools, 3 resources, and 2 prompts.
