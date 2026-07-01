@@ -13,7 +13,6 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from PIL import Image  # noqa: E402
 
 import mandem.stylize as st  # noqa: E402
-from mandem.image import ImageResult  # noqa: E402
 
 W45, H45 = 1080, 1350
 

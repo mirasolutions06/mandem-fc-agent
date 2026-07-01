@@ -10,11 +10,9 @@ from __future__ import annotations
 import hashlib
 import json
 import sqlite3
-import time
 import urllib.parse
 import urllib.request
 from dataclasses import dataclass
-from pathlib import Path
 from xml.etree import ElementTree as ET
 
 from . import _env

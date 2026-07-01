@@ -206,7 +206,6 @@ BRAVE_IMAGE_ENDPOINT = "https://api.search.brave.com/res/v1/images/search"
 def _brave_search_top_n(query: str, n: int = 5) -> list[dict]:
     """Brave Search images vertical. Free tier: 2,000 queries/mo. Better ranking than DDG.
     Requires BRAVE_API_KEY in env. Returns [] if key missing (caller should fall back)."""
-    import os
     api_key = os.environ.get("BRAVE_API_KEY", "").strip()
     if not api_key:
         return []

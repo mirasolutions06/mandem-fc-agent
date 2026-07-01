@@ -10,11 +10,9 @@
 
 from __future__ import annotations
 
-import time
 import urllib.parse
 import urllib.request
 from pathlib import Path
-from typing import Any
 
 from . import _env
 from .footy_api import FootballClient, BASE_URL
@@ -74,7 +72,7 @@ def find_by_team_squad(player_name: str, team_id: int, out_dir: Path | None = No
     best = surname_matches[0]["player"]
     photo_url = best.get("photo")
     if not photo_url:
-        return {"ok": False, "error": f"no photo URL on player record"}
+        return {"ok": False, "error": "no photo URL on player record"}
     # Download
     out = out_dir / f"player_{best['id']}.png"
     req = urllib.request.Request(photo_url, headers={"User-Agent": "mandem-fc-agent/0.1"})

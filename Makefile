@@ -4,13 +4,18 @@ PIP ?= $(PYTHON) -m pip
 export PYTHONPATH := scripts:$(PYTHONPATH)
 export MANDEM_DATA_DIR ?= $(CURDIR)/.mandem-data
 
-.PHONY: install test smoke db-init mcp clean
+.PHONY: install lint test check smoke db-init mcp clean
 
 install:
 	$(PIP) install -r requirements.txt
 
+lint:
+	$(PYTHON) -m ruff check scripts
+
 test:
 	$(PYTHON) -m pytest -q scripts/tests
+
+check: lint test
 
 smoke:
 	$(PYTHON) scripts/smoke.py

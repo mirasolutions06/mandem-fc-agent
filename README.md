@@ -8,6 +8,7 @@ it watches fixtures and news, drafts opinionated posts with match graphics, and
 publishes only after approval over Telegram.
 
 [![CI](https://github.com/mirasolutions06/football-content-agent/actions/workflows/ci.yml/badge.svg)](https://github.com/mirasolutions06/football-content-agent/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 ![Python](https://img.shields.io/badge/Python-3.11%2B-blue.svg)
 ![MCP tools](https://img.shields.io/badge/MCP%20tools-35-8A2BE2.svg)
 ![Tests](https://img.shields.io/badge/tests-67-brightgreen.svg)
@@ -18,6 +19,22 @@ publishes only after approval over Telegram.
 [Architecture](ARCHITECTURE.md) · [Runbook](RUNBOOK.md) · [The engine it runs on](https://github.com/mirasolutions06/ai-social-content-agent)
 
 </div>
+
+## At a glance
+
+This repo is the live football implementation of the reusable
+[`ai-social-content-agent`](https://github.com/mirasolutions06/ai-social-content-agent)
+engine. It shows the engine connected to real football inputs: fixtures, news,
+lineups, player imagery, Telegram approval, and optional Instagram publishing.
+
+| Path | What it contains |
+|---|---|
+| `scripts/mandem_mcp.py` | MCP tool server for football content workflows. |
+| `scripts/mandem/` | Football APIs, news ranking, captions, imagery, Telegram, and publishing. |
+| `FAILURE_MODES.md` | Public notes on data/provider failures and graceful fallback behavior. |
+| `ARCHITECTURE.md` | System design and approval-flow notes. |
+| `RUNBOOK.md` | Setup and operating checklist. |
+| `scripts/tests/` | No-secret tests for captions, season mode, image rules, and safety checks. |
 
 ## Why this exists
 
@@ -84,6 +101,11 @@ Telegram Bot API · Instagram Graph API · fal.ai / OpenAI image models.
 A sanitized proof repo. It excludes private workspace memory, live hostnames, IPs,
 chat IDs, secrets, and deployment-specific paths. Keep real credentials in `.env`
 locally or in a server env file outside git.
+
+## License
+
+MIT, see [LICENSE](LICENSE). Use it as a reference implementation for your own
+human-approved content workflow.
 
 ## Contact
 

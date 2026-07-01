@@ -18,7 +18,6 @@ import sqlite3
 import sys
 import time
 from pathlib import Path
-from typing import Any
 
 from mcp.server.fastmcp import FastMCP
 
@@ -26,7 +25,7 @@ sys.path.insert(0, str(Path(__file__).parent))
 
 # These work both locally (loaded via .env) and on a server (via MANDEM_ENV_FILE).
 from mandem import _env  # noqa: E402 — env loader (cheap; safe to keep)
-from mandem.footy_api import COVERED_LEAGUES, FootballClient  # noqa: E402
+from mandem.footy_api import FootballClient  # noqa: E402
 from mandem.season_mode import active_competitions, current_mode  # noqa: E402
 from mandem.image import ImageBrief, make_image, normalize_to_45  # noqa: E402
 from mandem.captions import (  # noqa: E402
@@ -43,7 +42,6 @@ from mandem import lineup_graphic as lg  # noqa: E402
 from mandem import news_image as ni  # noqa: E402
 from mandem import news_rss as nr  # noqa: E402
 from mandem import player_photo as pp  # noqa: E402
-from mandem import stylize as st  # noqa: E402
 from mandem import stylize_async as sta  # noqa: E402
 from mandem import vision_check as vc  # noqa: E402
 from mandem import wikimedia as wm  # noqa: E402
@@ -433,7 +431,6 @@ def set_draft_status(draft_id: int, status: str, edit_text: str = "") -> dict:
 def send_draft_dm(draft_id: int) -> dict:
     """Send the draft (photo + caption + 'reply yes/edit/skip' tail) to the operator.
     Persists tg_message_id on the draft row. Returns {ok, telegram_message_id}."""
-    from mandem.telegram import send_draft_dm as _send_draft, send_text  # local import to avoid load if unused
     _env.load()
     with _db() as conn:
         draft = conn.execute(
@@ -817,7 +814,7 @@ def mark_news_used(news_id: int) -> dict:
 # ============================================================================
 
 import asyncio as _asyncio  # noqa: E402 (re-import alias)
-from datetime import date as _date, datetime as _dt, timedelta as _td  # noqa: E402
+from datetime import date as _date, datetime as _dt  # noqa: E402
 
 
 @mcp.tool()
@@ -871,7 +868,7 @@ def get_team_form(team_id: int, last: int = 5) -> dict:
         c = FC()
         async with httpx.AsyncClient(timeout=20.0) as cli:
             r = await cli.get(
-                f"https://v3.football.api-sports.io/fixtures",
+                "https://v3.football.api-sports.io/fixtures",
                 headers=c._headers,
                 params={"team": team_id, "last": last},
             )
@@ -938,7 +935,7 @@ def check_imminent_lineups(window_min_minutes: int = 50, window_max_minutes: int
             f = c["fixture"]
             try:
                 lineups = await client.get_lineups(f.id)
-            except Exception as e:
+            except Exception:
                 lineups = []
             if lineups:
                 out.append({
